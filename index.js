@@ -1,4 +1,5 @@
 const { createStore, applyMiddleware } = require("redux");
+const { delayAction } = require("./middleware");
 
 const initialState = {
   todos: [],
@@ -26,7 +27,7 @@ const todoReducer = (state = initialState, action) => {
       break;
   }
 };
-const store = createStore(todoReducer, applyMiddleware());
+const store = createStore(todoReducer, applyMiddleware(delayAction));
 
 ///subscribe
 store.subscribe(() => {
