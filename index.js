@@ -27,3 +27,12 @@ const todoReducer = (state = initialState, action) => {
   }
 };
 const store = createStore(todoReducer);
+
+///subscribe
+store.subscribe(() => {
+  console.log(store.getState());
+});
+store.dispatch({
+  type: "todos/todoAdded",
+  payload: "Learn Redux",
+});
