@@ -28,4 +28,5 @@ const fetchTodosMiddleware = (store) => (next) => async (action) => {
 };
 module.exports = {
   delayAction,
+  fetchTodosMiddleware,
 };
