@@ -11,6 +11,11 @@ const delayAction = (store) => (next) => (action) => {
   return next(action);
 };
 
+const fetchTodosMiddleware = (store) => (next) => (action) => {
+  if (action.type === "todos/fetchTodos") {
+  }
+  return next(action);
+};
 module.exports = {
   delayAction,
 };

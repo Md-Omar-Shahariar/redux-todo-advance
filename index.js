@@ -33,7 +33,10 @@ const store = createStore(todoReducer, applyMiddleware(delayAction));
 store.subscribe(() => {
   console.log(store.getState());
 });
+// store.dispatch({
+//   type: "todos/todoAdded",
+//   payload: "Learn Redux",
+// });
 store.dispatch({
-  type: "todos/todoAdded",
-  payload: "Learn Redux",
+  type: "todos/fetchTodos",
 });
