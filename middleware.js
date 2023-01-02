@@ -1,32 +1,24 @@
 const fetch = require("node-fetch");
-const delayAction = (store) => (next) => (action) => {
-  if (action.type === "todos/todoAdded") {
-    console.log("I am delaying You");
+// const delayAction = (store) => (next) => (action) => {
+//   if (action.type === "todos/todoAdded") {
+//     console.log("I am delaying You");
 
-    setTimeout(() => {
-      next(action);
-    }, 2000);
-    return;
-  }
+//     setTimeout(() => {
+//       next(action);
+//     }, 2000);
+//     return;
+//   }
 
-  return next(action);
-};
+//   return next(action);
+// };
 
 const fetchTodosMiddleware = (store) => (next) => async (action) => {
-  if (action.type === "todos/fetchTodos") {
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/todos?_limit=5"
-    );
-    const todos = await response.json();
-    store.dispatch({
-      type: "todos/todoLoaded",
-      payload: todos,
-    });
-    return;
+  if (typeof action === "function") {
+    return action(store.dispatch, store.getState);
   }
   return next(action);
 };
 module.exports = {
-  delayAction,
+  //   delayAction,
   fetchTodosMiddleware,
 };
